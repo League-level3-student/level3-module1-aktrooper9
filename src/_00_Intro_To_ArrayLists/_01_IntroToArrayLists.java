@@ -26,13 +26,18 @@ strings.add("It was a long long time ago I beleive.");
 //        }
 
         // 6. Print all the Strings in reverse order.
-for(int i = strings.size()-1;i>=0; i--){
-	String s = strings.get(i);
-  System.out.println(s);
+//for(int i = strings.size()-1;i>=0; i--){
+	//String s = strings.get(i);
+//  System.out.println(s);
 
         // 7. Print only the Strings that have the letter 'e' in them.
-
-
+  
+//  }
+for(String string: strings){
+if(string.contains("w")) {
+	System.out.println(string);
+}
+}
 }
     }
-}
+
