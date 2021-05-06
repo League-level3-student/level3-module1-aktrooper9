@@ -1,5 +1,6 @@
 package _05_Intro_To_Hash_Maps;
 
+import java.util.HashMap;
 
 public class _02_LogSearch {
     /* 
@@ -11,6 +12,7 @@ public class _02_LogSearch {
      *      After an ID is entered, use another input dialog to ask the user
      *      to enter a name. Add this information as a new entry to your
      *      HashMap.
+     * 
      * 
      * Button 2: Search by ID
      *      When this button is clicked, use an input dialog to ask the user
@@ -33,5 +35,7 @@ public class _02_LogSearch {
      *      If this ID exists in the HashMap, remove it. Otherwise, notify the
      *      user that the ID is not in the list. 
      */
+	
+
 
 }
