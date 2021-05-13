@@ -28,13 +28,19 @@ public class MeetingScheduler {
     	HashMap<String, ArrayList<Integer>> p1= person1.getSchedule();
     	HashMap<String, ArrayList<Integer>> p2= person2.getSchedule();
     	HashMap<String,  ArrayList<Integer>> returnSchedule = new HashMap<String,  ArrayList<Integer>>();
-
-
+        Schedule avalable = new Schedule();
+        
     	for(String day : p1.keySet()) {
-    		
+    		ArrayList<Integer> times1= p1.get(day) ;
+    		ArrayList<Integer> times2= p2.get(day) ;
+    		for(Integer time: times1) {
+    			if(times2.contains(time)) {
+    				avalable.addAvailability(day, time);
+    			}
+    		}
+
     	}
 
-
-return null;
+return avalable;
     }
 }

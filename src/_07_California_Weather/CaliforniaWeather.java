@@ -1,6 +1,14 @@
 package _07_California_Weather;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /*
  * OBJECTIVE:
@@ -27,19 +35,47 @@ import java.util.HashMap;
  * temperature, you can get a free API key at: https://openweathermap.org/api 
  */
 
-public class CaliforniaWeather {
-    
+public class CaliforniaWeather implements ActionListener {
+	 JFrame frame = new JFrame();
+	 JPanel panel = new JPanel();
+	 JTextField input = new JTextField(20);
+	 JButton findweather = new JButton("find weather");
+	 String city;
+	 JLabel label = new JLabel();
+     HashMap<String, WeatherData> weatherData = Utilities.getWeatherData();
     void start() {
-        HashMap<String, WeatherData> weatherData = Utilities.getWeatherData();
         
         // All city keys have the first letter capitalized of each word
-        String cityName = Utilities.capitalizeWords( "National City" );
-        WeatherData datum = weatherData.get(cityName);
+
+ 
+        frame.setVisible(true);
+   	 panel.setVisible(true);
+   	 panel.add(input);
+   	 panel.add(label);
+   	 panel.add(findweather);
+   	 frame.add(panel);
+   	 frame.pack();
+   	 findweather.addActionListener(this);
+ 
+       
+    }
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		JButton buttonPressed = (JButton) e.getSource();
+		if(buttonPressed.equals(findweather)) {
+			city = input.getText();
+			String cityName = Utilities.capitalizeWords( city );
+			
+			WeatherData datum = weatherData.get(cityName);
         
         if( datum == null ) {
-            System.out.println("Unable to find weather data for: " + cityName);
+           label.setText("Unable to find weather data for: " + cityName);
         } else {
-            System.out.println(cityName + " is " + datum.weatherSummary + " with a temperature of " + datum.temperatureF + " F");
+        	 label.setText(cityName + " is " + datum.weatherSummary + " with a temperature of " + datum.temperatureF + " F");
         }
-    }
+        frame.pack();
+		}
+	}
 }
