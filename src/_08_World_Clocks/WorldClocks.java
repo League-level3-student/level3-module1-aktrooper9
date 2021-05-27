@@ -92,9 +92,11 @@ public class WorldClocks implements ActionListener {
 			cities.put(city, clockUtil.getTimeZoneFromCityName(city));
 		}
 		
-		
+		String timetext = "";
 		for (String city : cities.keySet()) {
+			try {
 			Calendar c = Calendar.getInstance(cities.get(city));
+			
 			String militaryTime = c.get(Calendar.HOUR_OF_DAY) + ":" + c.get(Calendar.MINUTE) + ":"
 					+ c.get(Calendar.SECOND);
 			String twelveHourTime = " [" + c.get(Calendar.HOUR) + ":" + c.get(Calendar.MINUTE) + ":"
@@ -105,9 +107,14 @@ public class WorldClocks implements ActionListener {
 			timeStr = militaryTime + twelveHourTime;
 
 			System.out.println(timeStr);
-			textArea.setText(city + "\n" + dateStr + "\n" + timeStr+"\n\n");
+			timetext +=(city + "\n" + dateStr + "\n" + timeStr+"\n\n");
+
 			
+			}catch(Exception e) {
+				System.out.println("couldn't find city "+city);
+			}
 		}
+		textArea.setText(timetext);
 		frame.pack();
 	}
 }
